@@ -1,7 +1,10 @@
 package hello
 
-import "fmt"
+const prefix = "Hello, "
 
 func Hello(name string) string {
-	return fmt.Sprintf("Hello there %s", name)
+	if name == "" {
+		name = "World"
+	}
+	return prefix + name
 }
