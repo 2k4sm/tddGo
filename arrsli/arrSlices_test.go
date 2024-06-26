@@ -24,9 +24,8 @@ func TestSumAll(t *testing.T) {
 		got := SumAll(slice)
 		want := []int{0}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, given %v", got, want, slice)
-		}
+		checkSums(t, got, want)
+
 	})
 
 	t.Run("SumAll: only one slice passed.", func(t *testing.T) {
@@ -35,9 +34,8 @@ func TestSumAll(t *testing.T) {
 		got := SumAll(slice1)
 		want := []int{15}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, given %v", got, want, slice1)
-		}
+		checkSums(t, got, want)
+
 	})
 
 	t.Run("SumAll: 5 slices passed.", func(t *testing.T) {
@@ -50,9 +48,8 @@ func TestSumAll(t *testing.T) {
 		got := SumAll(slice1, slice2, slice3, slice4, slice5)
 		want := []int{15, 15, 12, 13, 6}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, \n given:- \n%v\n%v\n%v\n%v\n%v", got, want, slice1, slice2, slice3, slice4, slice5)
-		}
+		checkSums(t, got, want)
+
 	})
 }
 
@@ -63,9 +60,8 @@ func TestSumAllTails(t *testing.T) {
 		got := SumAllTails(slice)
 		want := []int{0}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, given %v", got, want, slice)
-		}
+		checkSums(t, got, want)
+
 	})
 
 	t.Run("SumAllTails: slice with 1 element passed.", func(t *testing.T) {
@@ -74,9 +70,8 @@ func TestSumAllTails(t *testing.T) {
 		got := SumAllTails(slice)
 		want := []int{0}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, given %v", got, want, slice)
-		}
+		checkSums(t, got, want)
+
 	})
 
 	t.Run("SumAllTails: only one slice passed.", func(t *testing.T) {
@@ -85,9 +80,8 @@ func TestSumAllTails(t *testing.T) {
 		got := SumAllTails(slice1)
 		want := []int{14}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, given %v", got, want, slice1)
-		}
+		checkSums(t, got, want)
+
 	})
 
 	t.Run("SumAllTails: 5 slices passed.", func(t *testing.T) {
@@ -100,8 +94,14 @@ func TestSumAllTails(t *testing.T) {
 		got := SumAllTails(slice1, slice2, slice3, slice4, slice5)
 		want := []int{14, 10, 11, 12, 5}
 
-		if !slices.Equal(got, want) {
-			t.Errorf("got %v, want %v, \ngiven: \n%v\n%v\n%v\n%v\n%v", got, want, slice1, slice2, slice3, slice4, slice5)
-		}
+		checkSums(t, got, want)
 	})
+}
+
+func checkSums(tb testing.TB, got, want []int) {
+	tb.Helper()
+
+	if !slices.Equal(got, want) {
+		tb.Errorf("got %v, want %v", got, want)
+	}
 }
