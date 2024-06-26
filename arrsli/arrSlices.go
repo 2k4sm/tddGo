@@ -22,3 +22,19 @@ func SumAll(valuesArr ...[]int) (retArr []int) {
 
 	return retArr
 }
+
+func SumAllTails(valuesArr ...[]int) (retArr []int) {
+	retArr = make([]int, len(valuesArr))
+	var tail []int
+	for idx, values := range valuesArr {
+		if len(values) < 1 {
+			tail = []int{}
+		} else {
+			tail = values[1:]
+		}
+
+		retArr[idx] = Sum(tail)
+	}
+
+	return retArr
+}
